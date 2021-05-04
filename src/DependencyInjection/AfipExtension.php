@@ -13,6 +13,7 @@ class AfipExtension extends Extension
     {
         $configuration = new Configuration();
         $config = $this->processConfiguration($configuration, $configs);
+        $config['parameters']['CUIT'] = (float) $config['parameters']['CUIT'];
 
         $container->setParameter('afip_parameters', $config['parameters']);
 

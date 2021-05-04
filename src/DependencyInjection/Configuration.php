@@ -37,11 +37,14 @@ class Configuration implements ConfigurationInterface
                         ->scalarNode('passphrase')
                             ->defaultValue('')
                         ->end()
+                        ->arrayNode('puntos_venta')
+                            ->prototype('scalar')->end()
+                        ->end()                
                     ->end()
                 ->end()
             ->end()
         ;
-
+        
         return $treeBuilder;
     }
 }
