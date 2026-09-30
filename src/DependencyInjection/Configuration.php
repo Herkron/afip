@@ -9,8 +9,11 @@ class Configuration implements ConfigurationInterface
 {
     public function getConfigTreeBuilder()
     {
-        $treeBuilder = new TreeBuilder();
-        $rootNode = $treeBuilder->root('afip_parameters');
+        // Compatible con Symfony 4.2+ y 5.x/6.x (TreeBuilder::root() se elimino en 5.0)
+        $treeBuilder = new TreeBuilder('afip_parameters');
+        $rootNode = method_exists($treeBuilder, 'getRootNode')
+            ? $treeBuilder->getRootNode()
+            : $treeBuilder->root('afip_parameters');
 
         $rootNode
             ->children()
